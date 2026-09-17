@@ -1,0 +1,55 @@
+# Secrets — never commit
+.env
+*.env.local
+**/.env
+**/.env.bak*
+**/.env.*.bak
+
+# Python
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Handoff local state
+.handoff-state/
+**/.handoff-state/
+
+# Node / Deno
+node_modules/
+.deno/
+
+# Tooling
+.playwright-mcp/
+*.log
+.DS_Store
+
+# Third-party reference checkout — BUSL-1.1, never redistribute from here
+friday-studio/
+
+# Screenshot scratch from Playwright MCP
+.playwright-mcp/
+/*.png
+
+# Third-party reference checkouts (MIT) — used for design/shader reference, never redistributed from here
+kelbro/
+DORA/
+
+# Screen recordings
+*.mp4
+
+# Built static site (deployed with wrangler, not committed)
+site/dist/
+
+# wrangler local cache
+.wrangler/
+
+# Demo film build artefacts (regenerable; the MP4s are handed over, not committed)
+video/node_modules
+video/out/
+video/public/
+
+# Internal planning notes — kept locally, not part of this repository
+docs/plan/
