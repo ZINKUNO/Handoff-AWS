@@ -1,0 +1,204 @@
+/* Copyright 2026 The Handoff Authors — SPDX-License-Identifier: Apache-2.0
+ *
+ * Design tokens. Two layers:
+ *
+ *   1. Primitives — the raw palette and scales. Not for direct use.
+ *   2. Semantic tokens — what components consume: --surface, --text,
+ *      --border, the accents. Each is a light-dark() pair, so a component
+ *      that says `color: var(--text)` follows the viewer's theme for free.
+ *
+ * Reach for the semantic token. The day the palette is retuned, anything
+ * written against a primitive goes with it.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---- Scales ---------------------------------------------------------- */
+  --size-px: 1px;
+  --size-0-5: 0.125rem;
+  --size-1: 0.25rem;
+  --size-1-5: 0.375rem;
+  --size-2: 0.5rem;
+  --size-2-5: 0.625rem;
+  --size-3: 0.75rem;
+  --size-3-5: 0.875rem;
+  --size-4: 1rem;
+  --size-4-5: 1.125rem;
+  --size-5: 1.25rem;
+  --size-5-5: 1.375rem;
+  --size-6: 1.5rem;
+  --size-6-5: 1.625rem;
+  --size-7: 1.75rem;
+  --size-7-5: 1.875rem;
+  --size-8: 2rem;
+  --size-9: 2.25rem;
+  --size-10: 2.5rem;
+  --size-11: 2.75rem;
+  --size-12: 3rem;
+  --size-14: 3.5rem;
+  --size-16: 4rem;
+  --size-20: 5rem;
+  --size-24: 6rem;
+  --size-28: 7rem;
+  --size-32: 8rem;
+  --size-40: 10rem;
+  --size-48: 12rem;
+  --size-56: 14rem;
+  --size-64: 16rem;
+  --size-72: 18rem;
+  --size-80: 20rem;
+  --size-96: 24rem;
+  --size-112: 28rem;
+  --size-128: 32rem;
+  --size-160: 40rem;
+
+  --radius-1: 0.25rem;
+  --radius-2: 0.375rem;
+  --radius-2-5: 0.5rem;
+  --radius-3: 0.625rem;
+  --radius-4: 0.75rem;
+  --radius-5: 0.875rem;
+  --radius-6: 1rem;
+  --radius-7: 1.25rem;
+  --radius-round: 9999px;
+
+  /* Instrument Sans for everything, Comfortaa for the wordmark only, JetBrains
+     Mono for code and ids. The system stacks stay as fallbacks. */
+  --font-sans: "Instrument Sans", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-brand: "Comfortaa", var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* 13px is the base; eight steps. */
+  --font-size-1: 0.6875rem; /* 11 */
+  --font-size-2: 0.75rem;   /* 12 */
+  --font-size-3: 0.8125rem; /* 13 */
+  --font-size-4: 0.875rem;  /* 14 */
+  --font-size-5: 0.9375rem; /* 15 */
+  --font-size-6: 1rem;      /* 16 */
+  --font-size-7: 1.125rem;  /* 18 */
+  --font-size-8: 1.3125rem; /* 21 */
+  --font-size-9: 1.625rem;  /* 26 */
+
+  --font-weight-4: 400;
+  --font-weight-5: 500;
+  --font-weight-6: 600;
+  --font-weight-7: 700;
+
+  --lh-0: 100%;
+  --lh-1: 125%;
+  --lh-2: 135%;
+  --lh-3: 145%;
+  --lh-4: 175%;
+
+  --layer-1: 10;
+  --layer-2: 20;
+  --layer-3: 30;
+  --layer-4: 40;
+  --layer-5: 50;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --ease-smooth-decel: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Primitives ------------------------------------------------------ */
+  /* The kelbro cream: warm near-neutrals in oklch. Light is paper and ink;
+     dark is charcoal and champagne. */
+  --cream-ground: oklch(0.965 0.008 85);
+  --cream-card: oklch(0.98 0.005 85);
+  --cream-bright: oklch(0.99 0.004 85);
+  --cream-muted: oklch(0.92 0.006 85);
+  --cream-muted-2: oklch(0.895 0.008 85);
+  --ink: oklch(0.19 0 0);
+  --paper: oklch(0.99 0 0);
+
+  --char-ground: oklch(0.16 0.006 85);
+  --char-card: oklch(0.20 0.005 85);
+  --char-bright: oklch(0.24 0.006 85);
+  --char-muted: oklch(0.22 0.006 85);
+  --char-muted-2: oklch(0.26 0.006 85);
+  --chalk: oklch(0.93 0.005 85);
+  --champagne: oklch(0.9 0.035 70);
+  --champagne-ink: oklch(0.25 0.01 40);
+
+  --grey-100: rgb(19 19 20);
+  --grey-600: rgb(132 133 131);
+  --grey-900: rgb(255 255 255);
+
+  --amber-300: rgb(196 118 0);
+  --amber-600: rgb(255 196 61);
+  --red-300: rgb(196 42 10);
+  --red-600: rgb(255 104 80);
+  --blue-300: rgb(16 72 150);
+  --blue-600: rgb(92 178 255);
+  --green-300: rgb(20 140 62);
+  --green-600: rgb(72 222 142);
+  --purple-300: rgb(98 40 220);
+  --purple-600: rgb(178 140 255);
+
+  /* ---- Semantic --------------------------------------------------------- */
+  --surface-dark: light-dark(var(--cream-ground), var(--char-ground));
+  --surface: light-dark(var(--cream-card), var(--char-card));
+  --surface-bright: light-dark(var(--cream-bright), var(--char-bright));
+  --surface-2: light-dark(var(--cream-muted), var(--char-muted));
+
+  --highlight: light-dark(var(--cream-muted), var(--char-muted));
+  --highlight-bright: light-dark(var(--cream-muted-2), var(--char-muted-2));
+
+  --border: light-dark(oklch(0.19 0 0 / 0.1), oklch(0.93 0 0 / 0.12));
+  --border-bright: light-dark(oklch(0.19 0 0 / 0.17), oklch(0.93 0 0 / 0.2));
+
+  --text-bright: light-dark(var(--ink), var(--chalk));
+  --text: light-dark(oklch(0.19 0 0 / 0.78), oklch(0.93 0.005 85 / 0.78));
+  --text-faded: light-dark(oklch(0.19 0 0 / 0.55), oklch(0.93 0 0 / 0.5));
+
+  /* The accent is ink in light and champagne in dark; --accent-ink is what
+     sits on top of it. --wash is the tint every glass surface is mixed from. */
+  --accent: light-dark(var(--ink), var(--champagne));
+  --accent-ink: light-dark(var(--paper), var(--champagne-ink));
+  --wash: light-dark(var(--ink), var(--paper));
+
+  --amber: light-dark(var(--amber-300), var(--amber-600));
+  --red: light-dark(var(--red-300), var(--red-600));
+  --blue: light-dark(var(--blue-300), var(--blue-600));
+  --green: light-dark(var(--green-300), var(--green-600));
+  --purple: light-dark(var(--purple-300), var(--purple-600));
+
+  /* Amber means exactly one thing in this product: waiting on you. */
+  --needs-you: var(--amber);
+  --agent: var(--green);
+  --human: var(--blue);
+
+  --shadow-1: 0 0 0 1px var(--border), 0 1px 2px oklch(0 0 0 / 0.05), 0 4px 16px oklch(0 0 0 / 0.04);
+  --shadow-4: 0 0 0 1px var(--border), 0 2px 8px oklch(0 0 0 / 0.06), 0 12px 40px oklch(0 0 0 / 0.08);
+  --shadow-float: 0 0 0 0.5px var(--border), 0 1px 8px oklch(0 0 0 / 0.05), 0 24px 60px oklch(0 0 0 / 0.1);
+
+  @media (prefers-color-scheme: dark) {
+    --shadow-1: 0 0 0 1px var(--border), 0 1px 2px oklch(0 0 0 / 0.3), 0 4px 16px oklch(0 0 0 / 0.25);
+    --shadow-4: 0 0 0 1px var(--border), 0 2px 8px oklch(0 0 0 / 0.35), 0 12px 40px oklch(0 0 0 / 0.35);
+    --shadow-float: 0 0 0 0.5px var(--border), 0 1px 8px oklch(0 0 0 / 0.3), 0 24px 60px oklch(0 0 0 / 0.4);
+  }
+}
+
+/* An explicit choice beats the system preference. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+:root[data-theme="dark"] {
+  --shadow-1: 0 0 0 1px var(--border), 0 1px 2px oklch(0 0 0 / 0.3), 0 4px 16px oklch(0 0 0 / 0.25);
+  --shadow-4: 0 0 0 1px var(--border), 0 2px 8px oklch(0 0 0 / 0.35), 0 12px 40px oklch(0 0 0 / 0.35);
+  --shadow-float: 0 0 0 0.5px var(--border), 0 1px 8px oklch(0 0 0 / 0.3), 0 24px 60px oklch(0 0 0 / 0.4);
+}
+:root[data-theme="light"] {
+  --shadow-1: 0 0 0 1px var(--border), 0 1px 2px oklch(0 0 0 / 0.05), 0 4px 16px oklch(0 0 0 / 0.04);
+  --shadow-4: 0 0 0 1px var(--border), 0 2px 8px oklch(0 0 0 / 0.06), 0 12px 40px oklch(0 0 0 / 0.08);
+  --shadow-float: 0 0 0 0.5px var(--border), 0 1px 8px oklch(0 0 0 / 0.05), 0 24px 60px oklch(0 0 0 / 0.1);
+}
+
+/* The theme wipes in as a circle from the toggle; see app.js. */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 9999; }
