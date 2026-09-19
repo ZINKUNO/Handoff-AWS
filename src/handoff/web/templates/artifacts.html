@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "_page.html" as ui %}
+{% block title %}Artifacts — Handoff{% endblock %}
+{% block body %}
+<div class="page">
+  {{ ui.title("Artifacts", "Documents the runs produced — summaries, diffs, digests.") }}
+  <div class="page-body">
+    {% if artifacts %}
+    <div class="rows">
+      {% for a in artifacts %}
+      <a class="row-item link" href="/artifacts/{{ a.artifact_id }}">
+        <span class="provider-mark">{{ ui.icon('i-artifact','sm') }}</span>
+        <div class="stack grow" style="gap: 2px"><span class="row"><span class="primary">{{ a.name }}</span><span class="pill">{{ a.kind }}</span></span><span class="secondary truncate">{{ a.preview }}</span><span class="meta">{{ a.created }} · {{ a.size }} chars{% if a.run_id %} · run {{ a.run_id }}{% endif %}</span></div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    {{ ui.empty("No artifacts yet", "A workflow that produces a document — a digest, a pricing diff — saves it here.") }}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% import "_page.html" as ui %}
+{% block title %}{{ artifact.name }} — Handoff{% endblock %}
+{% block body %}
+<div class="page">
+  {% call ui.title(artifact.name, artifact.kind ~ " · " ~ artifact.size ~ " chars · " ~ created, [{"label": "Artifacts", "href": "/artifacts"}]) %}
+    <a class="button secondary small" href="/artifacts/{{ artifact.artifact_id }}/raw">Raw</a>
+    {% if artifact.run_id %}<a class="button secondary small" href="/inspector/{{ artifact.run_id }}">Run</a>{% endif %}
+  {% endcall %}
+  <div class="page-body narrow">{{ ui.data('', artifact.content) }}</div>
+</div>
+{% endblock %}
