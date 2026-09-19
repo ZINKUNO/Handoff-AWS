@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% import "_page.html" as ui %}
+{% block title %}Settings — Handoff{% endblock %}
+{% block body %}
+<div class="page">
+  {{ ui.title("Settings", "How this installation behaves.") }}
+  <div class="page-body narrow">
+    <div class="stack" style="gap: var(--size-8)">
+      {% if flash %}<div class="callout {{ 'error' if flash_kind == 'error' else '' }}">{{ flash }}</div>{% endif %}
+
+      <section class="card" id="models">
+        <header class="section-head"><h2 class="section-title">Models</h2><span class="section-count">primary → fallback</span></header>
+        <div class="model-chain">
+          <span class="model-slot"><span class="provider-mark" style="inline-size:18px;block-size:18px;font-size:10px">{{ models.providers[models.provider].letter if models.provider in models.providers else 'F' }}</span><span class="role">primary</span>{{ models.primary }}</span>
+          <span class="chain-arrow">→</span>
+          <span class="model-slot fallback"><span class="role">fallback</span>{{ models.fallback or '—' }}</span>
+        </div>
+        <form class="stack" hx-post="/settings/models" hx-target="body" hx-swap="outerHTML" style="margin-block-start: var(--size-2)">
+          <div class="field-row">
+            <label class="field"><span>Provider</span><select class="input" name="provider" id="provider-select" onchange="document.querySelectorAll('[data-provider]').forEach(el=>el.hidden = el.dataset.provider !== this.value)">
+              {% for key, meta in models.providers.items() %}<option value="{{ key }}" {% if key == models.provider %}selected{% endif %}>{{ meta.name }}</option>{% endfor %}</select>
+              <span class="help">Bedrock uses your AWS credentials; Groq and Anthropic need a key on <a class="text-bright" href="/credentials">Credentials</a>. Changing provider needs a restart.</span></label>
+            {% for key, options in models.catalog.items() %}
+            <label class="field" data-provider="{{ key }}" {% if key != models.provider %}hidden{% endif %}><span>Primary</span><select class="input" name="primary_{{ key }}">{% for m in options %}<option value="{{ m.id }}" {% if m.id == models.primary or ('.' ~ m.id) in models.primary %}selected{% endif %}>{{ m.name }} — {{ m.note }}</option>{% endfor %}</select></label>
+            <label class="field" data-provider="{{ key }}" {% if key != models.provider %}hidden{% endif %}><span>Fallback</span><select class="input" name="fallback_{{ key }}"><option value="">none</option>{% for m in options %}<option value="{{ m.id }}" {% if m.id == models.fallback or ('.' ~ m.id) in models.fallback %}selected{% endif %}>{{ m.name }} — {{ m.note }}</option>{% endfor %}</select></label>
+            {% endfor %}
+          </div>
+          <div class="form-actions"><button class="button accent" type="submit">Save models</button><span class="text-faded text-xs">Written to <code class="mono">{{ models.env_file }}</code>.</span></div>
+        </form>
+      </section>
+
+      <section class="card">
+        <header class="section-head"><h2 class="section-title">The gate</h2></header>
+        <form class="stack" hx-post="/settings/save" hx-target="body" hx-swap="outerHTML">
+          <label class="field"><span id="thr-label">Confidence threshold — {{ (settings.confidence_threshold*100)|round|int }}%</span>
+            <span class="help">Below this, it stops and asks instead of acting. Raise it to be asked more often while you're still deciding whether to trust it; lower it once the learned rules have built up.</span>
+            <input name="confidence_threshold" type="range" min="0.3" max="0.95" step="0.05" value="{{ settings.confidence_threshold }}" oninput="document.getElementById('thr-label').textContent='Confidence threshold — '+Math.round(this.value*100)+'%'"></label>
+          <div class="form-actions"><button class="button accent" type="submit">Save</button></div>
+        </form>
+      </section>
+
+      <section class="card">
+        <header class="section-head"><h2 class="section-title">Runtime</h2></header>
+        <dl class="kv">
+          <dt>Tools</dt><dd>{{ 'synthetic inbox' if settings.use_mock_tools else 'live integrations' }}</dd>
+          <dt>Storage</dt><dd>{{ 'DynamoDB' if settings.use_dynamodb else 'local JSON' }} <span class="text-faded mono">{{ settings.state_dir }}</span></dd>
+          <dt>Memory</dt><dd>{{ 'AgentCore Memory' if settings.use_agentcore_memory else 'local' }}</dd>
+          <dt>Region</dt><dd class="mono">{{ settings.aws_region }}</dd>
+          <dt>Notifications</dt><dd>{{ settings.notify_channel }}</dd>
+          <dt>Tracing</dt><dd>{{ 'OTEL → ' + settings.otel_exporter if settings.otel_enabled else 'off' }}</dd>
+          <dt>Scheduler</dt><dd>{{ 'running, checks every ' ~ scheduler.tick_seconds ~ 's' if scheduler.running else 'idle' }}</dd>
+          <dt>Voice</dt><dd>{{ speech_label }}</dd>
+        </dl>
+      </section>
+
+      <section class="card" id="import">
+        <header class="section-head"><h2 class="section-title">Workspaces</h2></header>
+        <div class="rows">
+          {% for w in workspaces %}
+          <div class="row-item"><span class="ws-dot" data-color="{{ w.color }}"></span><a class="primary grow" href="/platform/{{ w.workspace_id }}">{{ w.name }}</a>{% if w.is_default %}<span class="pill">default</span>{% endif %}<span class="meta">{{ w.description }}</span></div>
+          {% endfor %}
+        </div>
+        <div class="row"><button class="button primary small" data-dialog="#add-workspace">{{ ui.icon('i-plus','sm') }} New workspace</button><a class="button secondary small" href="/workspace/{{ workspace.workspace_id }}/export.yml">{{ ui.icon('i-download','sm') }} Download workspace.yml</a></div>
+        <form class="row" method="post" action="/workspace/import" enctype="multipart/form-data" style="flex-wrap: wrap">
+          <input class="input" type="file" name="file" accept=".yml,.yaml,.json,.zip" required style="inline-size: auto">
+          <button class="button secondary small" type="submit">{{ ui.icon('i-upload','sm') }} Import workspace.yml or bundle</button>
+        </form>
+        <p class="text-faded text-xs">Separate workspaces keep learned rules and credentials apart — a rule you set for your own mail should not start acting on a shared account.</p>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
