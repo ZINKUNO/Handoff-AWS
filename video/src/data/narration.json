@@ -1,0 +1,329 @@
+{
+ "scenes": [
+  {
+   "id": "open",
+   "sentences": [
+    {
+     "text": "Handoff.",
+     "file": "n-open-0.mp3",
+     "seconds": 0.96
+    },
+    {
+     "text": "Describe a chore in one sentence, hand it off, and it runs — asking you only when there is a real decision to make.",
+     "file": "n-open-1.mp3",
+     "seconds": 6.336
+    }
+   ],
+   "seconds": 7.296
+  },
+  {
+   "id": "problem",
+   "sentences": [
+    {
+     "text": "Every professional loses the first half hour of the day to the same small work.",
+     "file": "n-problem-0.mp3",
+     "seconds": 4.248
+    },
+    {
+     "text": "Triage the inbox. Review the pull requests. Watch what the competitor changed.",
+     "file": "n-problem-1.mp3",
+     "seconds": 4.656
+    },
+    {
+     "text": "None of it is hard. It is just every single morning, and never worth building a tool for.",
+     "file": "n-problem-2.mp3",
+     "seconds": 4.824
+    },
+    {
+     "text": "And the thing people actually fear from an agent is not that it is slow. It is that it does something they never sanctioned.",
+     "file": "n-problem-3.mp3",
+     "seconds": 5.808
+    }
+   ],
+   "seconds": 19.536
+  },
+  {
+   "id": "brief",
+   "sentences": [
+    {
+     "text": "The idea fits in one sentence: an agent that runs autonomously and only surfaces when there is a real decision to make.",
+     "file": "n-brief-0.mp3",
+     "seconds": 6.744
+    },
+    {
+     "text": "We built that sentence.",
+     "file": "n-brief-1.mp3",
+     "seconds": 1.344
+    }
+   ],
+   "seconds": 8.088
+  },
+  {
+   "id": "say",
+   "sentences": [
+    {
+     "text": "This is Talk. I tap the orb and say it: every weekday at eight, triage my inbox, real asks become tickets, newsletters get archived, ask me about anything unsure.",
+     "file": "n-say-0.mp3",
+     "seconds": 9.984
+    },
+    {
+     "text": "The caption fills in while I speak. That is Amazon Transcribe, streaming.",
+     "file": "n-say-1.mp3",
+     "seconds": 4.416
+    },
+    {
+     "text": "A few tool calls later the agent has picked the integrations, written the cron, decided where the line sits between what it may do alone and what it must ask about, and switched it on.",
+     "file": "n-say-2.mp3",
+     "seconds": 9.144
+    }
+   ],
+   "seconds": 23.544
+  },
+  {
+   "id": "run",
+   "sentences": [
+    {
+     "text": "And this is it running, on Amazon Bedrock.",
+     "file": "n-run-0.mp3",
+     "seconds": 2.568
+    },
+    {
+     "text": "That graph is the Strands Graph itself, drawn live from its own hook events.",
+     "file": "n-run-1.mp3",
+     "seconds": 4.44
+    },
+    {
+     "text": "Memory checks for rules. Gmail reads my real inbox. The executor judges every message and archives seventeen newsletters on its own.",
+     "file": "n-run-2.mp3",
+     "seconds": 7.896
+    },
+    {
+     "text": "Nothing here is staged. That is my inbox this morning, and those archives are real.",
+     "file": "n-run-3.mp3",
+     "seconds": 4.656
+    }
+   ],
+   "seconds": 19.56
+  },
+  {
+   "id": "decision",
+   "sentences": [
+    {
+     "text": "And when it is not sure, it stops. One screen, one decision.",
+     "file": "n-decision-0.mp3",
+     "seconds": 4.656
+    },
+    {
+     "text": "From an earlier run, here is why it stopped, in the agent's own words: The sender is unknown and the content suggests a potential partnership, which requires human review.",
+     "file": "n-decision-1.mp3",
+     "seconds": 9.24
+    },
+    {
+     "text": "Sixty percent sure. It needs seventy to act alone. That gap is the product.",
+     "file": "n-decision-2.mp3",
+     "seconds": 4.872
+    },
+    {
+     "text": "I say: archive it, it is cold outreach. Matched locally, no model round trip, and the run resumes exactly where it stopped.",
+     "file": "n-decision-3.mp3",
+     "seconds": 7.824
+    }
+   ],
+   "seconds": 26.592
+  },
+  {
+   "id": "quieter",
+   "sentences": [
+    {
+     "text": "My answer became a rule. Not a vague one: exact sender, whole domain, or two distinct keywords.",
+     "file": "n-quieter-0.mp3",
+     "seconds": 6.336
+    },
+    {
+     "text": "Same inbox, next run: handled alone, the rest from rules, zero questions.",
+     "file": "n-quieter-1.mp3",
+     "seconds": 5.4
+    },
+    {
+     "text": "It gets quieter the longer you use it.",
+     "file": "n-quieter-2.mp3",
+     "seconds": 2.064
+    }
+   ],
+   "seconds": 13.8
+  },
+  {
+   "id": "jobs",
+   "sentences": [
+    {
+     "text": "The inbox was one example.",
+     "file": "n-jobs-0.mp3",
+     "seconds": 1.848
+    },
+    {
+     "text": "Five workflows ship today: inbox triage, pull request review, a competitor pricing watch, a Slack digest, and meeting follow-up.",
+     "file": "n-jobs-1.mp3",
+     "seconds": 8.208
+    },
+    {
+     "text": "Here is the pricing watch, running on Bedrock Nova Pro. It finds the enterprise tier moved from ninety-nine dollars to one twenty-nine.",
+     "file": "n-jobs-2.mp3",
+     "seconds": 7.272
+    },
+    {
+     "text": "And it does not post that on its own. A competitor raising prices is a strategic call, so it asks first.",
+     "file": "n-jobs-3.mp3",
+     "seconds": 6.12
+    }
+   ],
+   "seconds": 23.448
+  },
+  {
+   "id": "gate",
+   "sentences": [
+    {
+     "text": "The whole product is one line.",
+     "file": "n-gate-0.mp3",
+     "seconds": 1.968
+    },
+    {
+     "text": "A before-tool-call hook sits in front of the only tool that changes anything. Below the threshold it raises the interrupt before the tool body runs, so nothing has happened to your mail.",
+     "file": "n-gate-1.mp3",
+     "seconds": 9.024
+    },
+    {
+     "text": "The graph state is serialised: a run paused at eight and answered at eleven thirty is the same run.",
+     "file": "n-gate-2.mp3",
+     "seconds": 5.256
+    }
+   ],
+   "seconds": 16.248
+  },
+  {
+   "id": "architecture",
+   "sentences": [
+    {
+     "text": "Three agents, one graph.",
+     "file": "n-architecture-0.mp3",
+     "seconds": 1.752
+    },
+    {
+     "text": "The builder turns a sentence into a config. The executor runs it as a Strands Graph, trigger, executor, completer, with the gate on the executor. The learner turns each decision into a rule.",
+     "file": "n-architecture-1.mp3",
+     "seconds": 10.92
+    },
+    {
+     "text": "Speech is Transcribe and Polly. State is one DynamoDB table. Rules live in AgentCore Memory.",
+     "file": "n-architecture-2.mp3",
+     "seconds": 6.624
+    }
+   ],
+   "seconds": 19.296
+  },
+  {
+   "id": "strands",
+   "sentences": [
+    {
+     "text": "Every Strands feature here is doing a real job.",
+     "file": "n-strands-0.mp3",
+     "seconds": 2.712
+    },
+    {
+     "text": "Graph and GraphBuilder. The interrupt hook. Invocation hooks for the narrator that draws the graph. A session repository, so the terminal and the browser share one conversation. MCP clients for Gmail, Linear, Slack, GitHub, Notion and Airtable.",
+     "file": "n-strands-1.mp3",
+     "seconds": 15.192
+    }
+   ],
+   "seconds": 17.904
+  },
+  {
+   "id": "aws",
+   "sentences": [
+    {
+     "text": "It is deployed.",
+     "file": "n-aws-0.mp3",
+     "seconds": 1.08
+    },
+    {
+     "text": "AgentCore Runtime runs the graph as an arm sixty-four container. AgentCore Memory holds the rules. EventBridge fires the schedule through a twelve-line Lambda.",
+     "file": "n-aws-1.mp3",
+     "seconds": 8.928
+    },
+    {
+     "text": "And handoff doctor proves every credential with a real call. Eleven of them, Gmail to Airtable, all green.",
+     "file": "n-aws-2.mp3",
+     "seconds": 6.528
+    }
+   ],
+   "seconds": 16.536
+  },
+  {
+   "id": "connected",
+   "sentences": [
+    {
+     "text": "Nothing here is a mock.",
+     "file": "n-connected-0.mp3",
+     "seconds": 1.464
+    },
+    {
+     "text": "Gmail signed in through its own OAuth. Linear, GitHub, Slack, Notion and Airtable on real tokens. The footage you just watched read a real inbox and acted on it.",
+     "file": "n-connected-1.mp3",
+     "seconds": 10.032
+    }
+   ],
+   "seconds": 11.496
+  },
+  {
+   "id": "surfaces",
+   "sentences": [
+    {
+     "text": "Three surfaces, one gate: the orb, a native desktop window, and a command line where run dash dash watch streams the same events into your terminal.",
+     "file": "n-surfaces-0.mp3",
+     "seconds": 8.808
+    },
+    {
+     "text": "Plus a site with the guides.",
+     "file": "n-surfaces-1.mp3",
+     "seconds": 1.464
+    }
+   ],
+   "seconds": 10.272
+  },
+  {
+   "id": "close",
+   "sentences": [
+    {
+     "text": "Handoff does the boring part. And it knows when to stop and ask.",
+     "file": "n-close-0.mp3",
+     "seconds": 3.6
+    },
+    {
+     "text": "Open source, Apache two point zero, at github dot com slash Zinkuno slash Handoff A W S.",
+     "file": "n-close-1.mp3",
+     "seconds": 6.504
+    }
+   ],
+   "seconds": 10.104
+  }
+ ],
+ "user_setup": {
+  "text": "Every weekday at eight, triage my inbox. Real requests from teammates become Linear tickets, newsletters get archived, and ask me about anything you're not sure about. Set it up and run it now.",
+  "wav": "user-setup.wav",
+  "seconds": 11.544
+ },
+ "user_decide": {
+  "text": "Archive it. It's cold outreach.",
+  "wav": "user-decide.wav",
+  "seconds": 2.832
+ },
+ "user_decide_generic": {
+  "text": "Archive it.",
+  "wav": "user-decide_generic.wav",
+  "seconds": 1.2
+ },
+ "user_again": {
+  "text": "Run it again.",
+  "wav": "user-again.wav",
+  "seconds": 1.392
+ }
+}
